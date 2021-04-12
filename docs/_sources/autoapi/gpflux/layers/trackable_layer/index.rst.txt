@@ -1,0 +1,104 @@
+:mod:`gpflux.layers.trackable_layer`
+====================================
+
+.. py:module:: gpflux.layers.trackable_layer
+
+.. autoapi-nested-parse::
+
+   Utility layer that tracks variables in :class:`tf.Module`.
+
+
+
+Module Contents
+---------------
+
+.. function:: extend_and_filter(extend_method: Callable[(..., Sequence)], filter_method: Optional[Callable[..., Sequence]] = None) -> Callable[([Any], Any)]
+
+   Decorator that extends and optionally filters the output of a function.
+   Both ``extend_method`` and ``filter_method`` need to be members of the same
+   class as the decorated method.
+
+   :param extend_method:
+       Accepts the same arguments as the decorated function.
+       The returned list from ``extend_method`` will be added to the
+       decorated function's returned list.
+   :param filter_method:
+       Takes in the extended list and filters it.
+       Defaults to no filtering when set to `None`.
+
+
+.. class:: TrackableLayer(trainable=True, name=None, dtype=None, dynamic=False, **kwargs)
+
+
+   Bases: :class:`tensorflow.keras.layers.Layer`
+
+   A :class:`tf.Layer` that tracks variables in :class:`tf.Module`\ s.
+
+   .. todo:: Once TensorFlow 2.5 is released, this class will be removed.
+       See https://github.com/Prowler-io/gpflux/issues/189
+
+   .. method:: _submodules(self) -> Sequence[tf.Module]
+      :property:
+
+      Returns list of :class:`tf.Module` instances that are attributes on the class.
+      This also includes instances within lists or tuples.
+
+
+   .. method:: submodule_variables(self) -> Sequence[tf.Variable]
+
+      Return flat iterable of variables from all attributes that contain `tf.Module`\ s
+
+
+   .. method:: submodule_trainable_variables(self) -> Sequence[tf.Variable]
+
+      Return flat iterable of trainable variables from all attributes that contain `tf.Module`\ s
+
+
+   .. method:: submodule_non_trainable_variables(self) -> Sequence[tf.Variable]
+
+      Return flat iterable of non-trainable variables from all
+      attributes that contain `tf.Module`\ s
+
+
+   .. method:: _dedup_weights(self, weights)
+
+      Deduplicate weights while maintaining order as much as possible.
+
+
+   .. method:: trainable_weights(self) -> Sequence[tf.Variable]
+      :property:
+
+      List of all trainable weights tracked by this layer.
+
+      Unlike `tf.keras.layers.Layer`, this *will* track the weights of
+      nested `tf.Module`\ s that are not themselves Keras layers.
+
+
+   .. method:: non_trainable_weights(self) -> Sequence[tf.Variable]
+      :property:
+
+      List of all non-trainable weights tracked by this layer.
+
+      Unlike `tf.keras.layers.Layer`, this *will* track the weights of
+      nested `tf.Module`\ s that are not themselves Keras layers.
+
+
+   .. method:: trainable_variables(self) -> Sequence[tf.Variable]
+      :property:
+
+      Sequence of trainable variables owned by this module and its submodules.
+
+      Unlike `tf.keras.layers.Layer`, this *will* track the weights of
+      nested `tf.Module`\ s that are not themselves Keras layers.
+
+
+   .. method:: variables(self) -> Sequence[tf.Variable]
+      :property:
+
+      Returns the list of all layer variables/weights.
+
+      Unlike `tf.keras.layers.Layer`, this *will* track the weights of
+      nested `tf.Module`\ s that are not themselves Keras layers.
+
+
+

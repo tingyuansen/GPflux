@@ -1,0 +1,26 @@
+:mod:`gpflux.types`
+===================
+
+.. py:module:: gpflux.types
+
+.. autoapi-nested-parse::
+
+   Types used within GPflux (for static type-checking).
+
+
+
+Module Contents
+---------------
+
+.. data:: ShapeType
+   
+
+   Union of valid types for describing the shape of a `tf.Tensor`\ (-like) object 
+
+
+.. data:: ObservationType
+   
+
+   Type for the ``[inputs, targets]`` list used by :class:`~gpflux.layers.LayerWithObservations`
+
+

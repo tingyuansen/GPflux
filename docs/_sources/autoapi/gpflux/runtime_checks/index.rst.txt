@@ -1,0 +1,25 @@
+:mod:`gpflux.runtime_checks`
+============================
+
+.. py:module:: gpflux.runtime_checks
+
+.. autoapi-nested-parse::
+
+   Runtime checks 
+
+
+
+Module Contents
+---------------
+
+.. function:: verify_compatibility(kernel: gpflow.kernels.MultioutputKernel, mean_function: gpflow.mean_functions.MeanFunction, inducing_variable: gpflow.inducing_variables.MultioutputInducingVariables) -> Tuple[(int, int)]
+
+   Provide error checking on shapes at layer construction. This method will be
+   made simpler by having enhancements to GPflow: eg by adding foo.output_dim
+   attribute, where foo is a MultioutputInducingVariable
+
+   :param kernel: The multioutput kernel for the layer
+   :param inducing_variable: The inducing features for the layer
+   :param mean_function: The mean function applied to the inputs.
+
+

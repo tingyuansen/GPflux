@@ -1,0 +1,19 @@
+:orphan:
+
+:mod:`gpflux.experiment_support.plotting`
+=========================================
+
+.. py:module:: gpflux.experiment_support.plotting
+
+
+Module Contents
+---------------
+
+.. function:: plot_layer(X: gpflow.base.TensorType, m: List[TensorType], v: List[TensorType], s: List[TensorType], idx: int, axes: Optional[plt.Axes] = None) -> None
+
+   :param X: inputs of the DGP: N x 1
+   :param means: array of num_layer elements of shape N x D
+   :param variances: array of num_layer elements of shape D x N x N
+   :param samples: array of num_layer elements of shape N x D x S
+
+
